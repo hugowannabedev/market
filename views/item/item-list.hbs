@@ -1,0 +1,18 @@
+<h1>Items in our Website:</h1>
+
+{{#each item}}
+    <section >
+        <h2>{{this.Title}}</h2>
+        <p>
+            Price: {{this.Price}} <br />
+            Condition: {{this.Condition}} <br />
+            {{!-- <a href="/item/{{this._id}}">More details</a> --}}
+            
+        </p>
+
+        {{!-- <form action="/item/{{_id}}/delete" method="POST">
+            <button>Delete</button>
+        </form> --}}
+
+    </section>
+{{/each}}

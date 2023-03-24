@@ -1,0 +1,24 @@
+Idea 1
+
+Vinted like app with hability to update and delete only for the user that created the post
+https://www.vinted.pt/
+
+User --> CR
+Item --> CRUD
+
+
+MVP:
+- view to see item details, includes a link to User profile (user can see email address & write)
+- R list of items + item details --> public
+- R user profile --> only loggedin users
+
+
+Item form Required: Title, Description, Photo(s), Price, Condition
+Item form Non-Required: Brand, Size/Dimensions, Color
+
+
+
+Bonus:
+- U+D: only owner
+- upload images (Cloudinary)
+- location, messages, ...
