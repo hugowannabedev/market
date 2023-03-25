@@ -4,13 +4,15 @@ const isUserLoggedIn = require("../middleware/isLoggedIn");
 const router = express.Router();
 
 //GET
-router.get("/item", (req, res, next) => {
+router.get('/item', (req, res, next) => {
   Item.find()
     .then((itemArr) => {
+      
       const data = {
         item: itemArr,
       };
-      res.render("./item/item-list.hbs", data);
+      
+      res.render("item/item-list", data);
     })
     .catch((e) => {
       console.log(e);
@@ -20,14 +22,15 @@ router.get("/item", (req, res, next) => {
 
 //Display
 
-router.get("/item/create", isUserLoggedIn, (req, res, next) => {
+router.get("./item/create", isUserLoggedIn, (req, res, next) => {
   User.find()
     .then((itemArr) => {
+      
       const data = {
         user: itemArr,
       };
 
-      res.render("./item/item-create.hbs", data);
+      res.render("./item/item-create", data);
     })
     .catch((e) => {
       console.log(e);
