@@ -3,7 +3,7 @@ const Item = require("../models/Item.model");
 const isUserLoggedIn = require("../middleware/isLoggedIn");
 const router = express.Router();
 
-//GET
+// List of items
 router.get('/item', (req, res, next) => {
   Item.find()
     .then((itemArr) => {
@@ -13,24 +13,6 @@ router.get('/item', (req, res, next) => {
       };
       
       res.render("item/item-list", data);
-    })
-    .catch((e) => {
-      console.log(e);
-      next(e);
-    });
-});
-
-//Display
-
-router.get("./item/create", isUserLoggedIn, (req, res, next) => {
-  User.find()
-    .then((itemArr) => {
-      
-      const data = {
-        user: itemArr,
-      };
-
-      res.render("./item/item-create", data);
     })
     .catch((e) => {
       console.log(e);
@@ -55,5 +37,29 @@ router.post("/item", isUserLoggedIn, (req, res, next) => {
       next(e);
     });
 });
+
+
+// Create a new item 
+router.get("/create", (req, res, next) => {
+  res.render("item/create-item");
+});
+
+/*router.get("/create", isUserLoggedIn, (req, res, next) => {
+  User.find()
+    .then((userArr) => {
+      
+      const data = {
+        users: userArr,
+      };
+
+      res.render("/item/create-item", data);
+    })
+    .catch((e) => {
+      console.log(e);
+      next(e);
+    });
+});*/
+
+
 
 module.exports = router;
