@@ -67,6 +67,8 @@ router.get("/items/:itemId/edit", isUserLoggedIn, (req, res, next) => {
   Item.findById(itemId)
     .then((itemsFromDB) => {
       itemDetails = itemsFromDB;
+
+      console.log(itemDetails);
     })
     .then((itemDetails) => {
       const data = {
@@ -79,7 +81,7 @@ router.get("/items/:itemId/edit", isUserLoggedIn, (req, res, next) => {
 });
 
 // //UPDATE: process form
-router.post("/items/:itemId/edit", isUserLoggedIn, (req, res, next) => {
+router.post("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
   const { itemId } = req.params;
   const { title, description, price, image, condition } = req.body;
 
@@ -88,14 +90,14 @@ router.post("/items/:itemId/edit", isUserLoggedIn, (req, res, next) => {
     { title, description, price, image, condition },
     { new: true }
   )
-    .then((updatedItem) => {
-      res.redirect("/items");
+    .then(() => {
+      res.redirect("/item");
     })
     .catch((error) => next(error));
 });
 
 //DELETE
-router.post("/items/:itemId/delete", isUserLoggedIn, (req, res, next) => {
+router.post("/item/:itemId/delete", isUserLoggedIn, (req, res, next) => {
   const { itemId } = req.params;
 
   Item.findByIdAndDelete(itemId)
