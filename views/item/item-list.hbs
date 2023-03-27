@@ -11,11 +11,12 @@
             Images: <img src="{{imageUrl}}" alt=""> <br />
             
             
-        </p>
-<a href="/items/{{this._id}}/edit">Edit</a>
-        <form action="/items/{{_id}}/delete" method="POST">
+       </p>
+<a href="/item/{{this._id}}/edit">Edit</a>
+        <form action="/item/{{_id}}/delete" method="POST">
             <button>Delete</button>
         </form>
+        <a href="/item/{{this._id}}"> See Details</a>
 
     </section>
 {{/each}}

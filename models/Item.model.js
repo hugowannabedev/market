@@ -5,22 +5,24 @@ const itemSchema = new Schema(
   {
     title: {
       type: String,
-      required: true,
-      trim: true,
+      required: [true, "Title is required"],
+      trim: true
     },
     price: {
       type: Number,
-      required: true,
+      required: [true, "Title is required"],
       trim: true,
     },
     description: {
       type: String,
-      required: true,
     },
     condition: {
       type: String,
-      required: true,
-      trim: true,
+      required: [true, "Condition is required"],
+      enum : [
+        "New", "Used", "Vintage", "Destroyed", "In Need of Restoration"
+      ]
+  
     },
     image: {
       type: String,

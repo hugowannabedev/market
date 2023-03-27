@@ -1,22 +1,22 @@
-<h2>Edit the item: {{item.title}}</h2>
+<h2>Edit the item: {{this.title}}</h2>
 
 <div id="create-form">
-  <form action="/item/create" method="POST"  {{!--enctype="multipart/form-data"--}}> 
-
+  <form action="/item/{{this._id}}/edit" method="POST"  {{!--enctype="multipart/form-data"--}}> 
+  <h1>id:{{this._id}} </h1>
     <label> Title
-      <input type="text" value = " {{this.title}} "name="title" placeholder="Your Item Title" />
+      <input type="text" value = "{{this.title}}"name="title" placeholder="Your Item Title" />
     </label>
 
 
     <label> Description:
-        <textarea type="text" name="description" cols="30" rows="4" placeholder="In few your describe your product"> </textarea>
+        <input type="text" value="{{this.description}}"name="description" cols="30" rows="4" />
     </label>
 
     <label> Price
-      <input type="number" name="price" placeholder="Price" />
+      <input type="number" value ="{{this.price}}" name="price"/>
     </label>
      <label> Condition
-      <input type="text" name="condition" placeholder="Is your product new? Or is it used?" />
+      <input type="text" value = "{{this.condition}}" name="condition"/>
     </label>
     <label>Image:
           <input type="file" name="image" />

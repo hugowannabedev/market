@@ -33,6 +33,7 @@ router.get("/item/create", isUserLoggedIn, (req, res, next) => {
     });
 });
 
+
 router.post(
   "/item/create",
   isUserLoggedIn,
@@ -56,26 +57,19 @@ router.post(
       });
   }
 );
+    
+    
+
+
 
 //Update
 
-router.get("/items/:itemId/edit", isUserLoggedIn, (req, res, next) => {
+router.get("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
   const { itemId } = req.params;
 
-  let itemDetails;
-
   Item.findById(itemId)
-    .then((itemsFromDB) => {
-      itemDetails = itemsFromDB;
-
-      console.log(itemDetails);
-    })
-    .then((itemDetails) => {
-      const data = {
-        item: itemDetails,
-      };
-
-      res.render("item/edit-item.hbs", data);
+    .then((foundedItem) => {
+       res.render("item/edit-item", foundedItem)
     })
     .catch((error) => next(error));
 });
@@ -90,8 +84,9 @@ router.post("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
     { title, description, price, image, condition },
     { new: true }
   )
-    .then(() => {
-      res.redirect("/item");
+    .then((updateItem) => {
+      console.log(updateItem);
+       res.redirect("/item");
     })
     .catch((error) => next(error));
 });
@@ -106,3 +101,19 @@ router.post("/item/:itemId/delete", isUserLoggedIn, (req, res, next) => {
 });
 
 module.exports = router;
+
+//item details
+router.get("/item/:itemId", (req, res, next) => {
+
+  const { itemId } = req.params;
+
+  Item.findById(itemId)
+    .then(itemDetails => {
+      res.render("item/item-details", itemDetails);
+    })
+    .catch(e => {
+      console.log("error getting item details from DB", e);
+      next(e);
+    });
+
+});
