@@ -3,23 +3,27 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const itemSchema = new Schema(
   {
-    Title: {
+    title: {
       type: String,
-      required: [true, "Title required"],
+      // required: [true, "Title required"],
       trim: true,
     },
-    Price: {
+    price: {
       type: Number,
-      required: [true, "Price required"],
+      // required: [true, "Price required"],
       trim: true,
     },
-    Description: {
+    description: {
       type: String,
-      required: [true, "Description required"],
+      // required: [true, "Description required"],
     },
-    Condition: {
+    condition: {
       type: String,
-      trim: [true, "Condition required"],
+      // required: [true, "Condition required"],
+      trim: true,
+    },
+    image: {
+      type: String,
     },
   },
   {

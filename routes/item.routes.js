@@ -4,14 +4,13 @@ const isUserLoggedIn = require("../middleware/isLoggedIn");
 const router = express.Router();
 
 // List of items
-router.get('/item', (req, res, next) => {
+router.get("/item", (req, res, next) => {
   Item.find()
     .then((itemArr) => {
-      
       const data = {
         item: itemArr,
       };
-      
+
       res.render("item/item-list", data);
     })
     .catch((e) => {
@@ -21,11 +20,11 @@ router.get('/item', (req, res, next) => {
 });
 
 router.post("/item", isUserLoggedIn, (req, res, next) => {
-  const bookDetails = {
-    Title: req.body.Title,
-    Price: req.body.Price,
-    Description: req.body.Description,
-    Condition: req.body.Condition,
+  const itemDetails = {
+    title: req.body.title,
+    price: req.body.price,
+    description: req.body.description,
+    condition: req.body.condition,
   };
 
   Item.create(itemDetails)
@@ -38,28 +37,41 @@ router.post("/item", isUserLoggedIn, (req, res, next) => {
     });
 });
 
+// Create a new item
 
-// Create a new item 
-router.get("/create", (req, res, next) => {
-  res.render("item/create-item");
-});
+// router.get("/create", (req, res, next) => {
+//   .then(() => {
+//   res.render("item/create-item")
+//   ;})
 
-/*router.get("/create", isUserLoggedIn, (req, res, next) => {
-  User.find()
-    .then((userArr) => {
-      
-      const data = {
-        users: userArr,
-      };
-
-      res.render("/item/create-item", data);
+router.get("/create", isUserLoggedIn, (req, res, next) => {
+  Item.find()
+    .then(() => {
+      res.render("item/create-item.hbs");
     })
     .catch((e) => {
       console.log(e);
       next(e);
     });
-});*/
+});
 
+router.post("/create", isUserLoggedIn, (req, res, next) => {
+  const itemDetails = {
+    title: req.body.title,
+    description: req.body.description,
+    price: req.body.price,
+    condition: req.body.condition,
+    image: req.body.image,
+  };
 
+  Item.create(itemDetails)
+    .then((itemFromDB) => {
+      res.redirect("/item");
+    })
+    .catch((e) => {
+      console.log("error adding new item", e);
+      next(e);
+    });
+});
 
 module.exports = router;
