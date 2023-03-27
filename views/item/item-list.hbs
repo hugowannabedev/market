@@ -4,15 +4,18 @@
     <section >
         <h2>{{this.title}}</h2>
         <p>
-            Price: {{this.price}} <br />
-            Condition: {{this.condition}} <br />
-            {{!-- <a href="/item/{{this._id}}">More details</a> --}}
+            Title: {{this.title}} <br />
+            Description: {{this.description}} <br />
+            Condition: {{this.condition}} <br /> 
+           Price: {{this.price}} <br />
+            Images: <img src="{{imageUrl}}" alt=""> <br />
+            
             
         </p>
-
-        {{!-- <form action="/item/{{_id}}/delete" method="POST">
+<a href="/items/{{this._id}}/edit">Edit</a>
+        <form action="/items/{{_id}}/delete" method="POST">
             <button>Delete</button>
-        </form> --}}
+        </form>
 
     </section>
 {{/each}}
