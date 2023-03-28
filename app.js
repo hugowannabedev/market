@@ -23,6 +23,11 @@ const projectName = "devMarket";
 
 app.locals.appTitle = `${capitalize(projectName)} `;
 
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.currentUser;
+  next();
+});
+
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);

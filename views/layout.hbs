@@ -17,13 +17,15 @@
       <nav>
         <a href="/">The DevMarket</a>
         <a href="/item">See all our items</a>
+        {{#if currentUser}}
         <a href="/item/create">Add a new item</a>
-       <a href="/signup">Register</a>
-       <a href="/login">Log In</a>
-
-      <form method="POST" action="/logout">
+        <form method="POST" action="/logout">
           <button>Logout</button>
       </form>
+      {{else}}
+       <a href="/signup">Register</a>
+       <a href="/login">Log In</a>
+       {{/if}}
 
       </nav>
 
