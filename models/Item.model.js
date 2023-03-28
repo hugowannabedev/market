@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+require;
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const itemSchema = new Schema(

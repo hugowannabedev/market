@@ -1,7 +1,7 @@
 <h2>Edit the item: {{this.title}}</h2>
 
 <div id="create-form">
-  <form action="/item/{{this._id}}/edit" method="POST"  {{!--enctype="multipart/form-data"--}}> 
+  <form action="/item/{{this._id}}/edit" method="POST"  enctype="multipart/form-data"> 
   <h1>id:{{this._id}} </h1>
     <label> Title
       <input type="text" value = "{{this.title}}"name="title" placeholder="Your Item Title" />

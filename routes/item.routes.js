@@ -24,6 +24,7 @@ router.get("/item", (req, res, next) => {
 // Create a new item
 
 router.get("/item/create", isUserLoggedIn, (req, res, next) => {
+  console.log(req.session.currentUser._id);
   Item.find()
     .then(() => {
       res.render("item/create-item.hbs");
@@ -47,18 +48,7 @@ router.post(
       email: req.body.email,
       image: req.file.path,
     };
-    // if (
-    //   title === "" ||
-    //   description === "" ||
-    //   price === "" ||
-    //   condition === "" ||
-    //   email === ""
-    // ) {
-    //   res.status(400).render("/item/create", {
-    //     errorMessage: "All fields are mandatory with exeption of images.",
-    //   });
-    //   return;
-    // }
+
     Item.create(itemDetails)
       .then((itemFromDB) => {
         res.redirect("/item");
@@ -83,34 +73,28 @@ router.get("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
 });
 
 // //UPDATE: process form
-router.post("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
-  const { itemId } = req.params;
-  const { title, description, price, image, condition, email } = req.body;
+router.post(
+  "/item/:itemId/edit",
+  isUserLoggedIn,
+  fileUploader.single("image"),
+  (req, res, next) => {
+    console.log(req.file);
+    console.log(req.body);
+    const { itemId } = req.params;
+    const { title, description, price, condition, email } = req.body;
+    const image = req.file.path;
 
-  // if (
-  //   title === "" ||
-  //   description === "" ||
-  //   price === "" ||
-  //   condition === "" ||
-  //   email === ""
-  // ) {
-  //   res.status(400).render("/item/edit-item", {
-  //     errorMessage: "All fields are mandatory with exeption of images.",
-  //   });
-  //   return;
-  // }
-
-  Item.findByIdAndUpdate(
-    itemId,
-    { title, description, price, image, condition },
-    { new: true }
-  )
-    .then((updateItem) => {
-      console.log(updateItem);
-      res.redirect("/item");
-    })
-    .catch((error) => next(error));
-});
+    Item.findByIdAndUpdate(
+      itemId,
+      { title, description, image, price, condition, email },
+      { new: true }
+    )
+      .then((updateItem) => {
+        res.redirect("/item");
+      })
+      .catch((error) => next(error));
+  }
+);
 
 //DELETE
 router.post("/item/:itemId/delete", isUserLoggedIn, (req, res, next) => {
