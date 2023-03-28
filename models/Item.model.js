@@ -10,7 +10,7 @@ const itemSchema = new Schema(
     },
     price: {
       type: Number,
-      required: [true, "Title is required"],
+      required: [true, "Price is required"],
       trim: true,
     },
     description: {
@@ -21,9 +21,8 @@ const itemSchema = new Schema(
       required: [true, "Condition is required"],
       enum: ["New", "Used", "Vintage", "Destroyed", "In Need of Restoration"],
     },
-    image: {
-      type: String,
-    },
+    image: { type: String },
+
     email: {
       type: String,
       required: [true, "Email is required"],

@@ -44,10 +44,21 @@ router.post(
       description: req.body.description,
       price: req.body.price,
       condition: req.body.condition,
-      image: req.body.image,
       email: req.body.email,
+      image: req.file.path,
     };
-    console.log(req.body);
+    // if (
+    //   title === "" ||
+    //   description === "" ||
+    //   price === "" ||
+    //   condition === "" ||
+    //   email === ""
+    // ) {
+    //   res.status(400).render("/item/create", {
+    //     errorMessage: "All fields are mandatory with exeption of images.",
+    //   });
+    //   return;
+    // }
     Item.create(itemDetails)
       .then((itemFromDB) => {
         res.redirect("/item");
@@ -74,7 +85,20 @@ router.get("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
 // //UPDATE: process form
 router.post("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
   const { itemId } = req.params;
-  const { title, description, price, image, condition } = req.body;
+  const { title, description, price, image, condition, email } = req.body;
+
+  // if (
+  //   title === "" ||
+  //   description === "" ||
+  //   price === "" ||
+  //   condition === "" ||
+  //   email === ""
+  // ) {
+  //   res.status(400).render("/item/edit-item", {
+  //     errorMessage: "All fields are mandatory with exeption of images.",
+  //   });
+  //   return;
+  // }
 
   Item.findByIdAndUpdate(
     itemId,
