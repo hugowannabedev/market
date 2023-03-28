@@ -6,7 +6,7 @@ const itemSchema = new Schema(
     title: {
       type: String,
       required: [true, "Title is required"],
-      trim: true
+      trim: true,
     },
     price: {
       type: Number,
@@ -19,13 +19,15 @@ const itemSchema = new Schema(
     condition: {
       type: String,
       required: [true, "Condition is required"],
-      enum : [
-        "New", "Used", "Vintage", "Destroyed", "In Need of Restoration"
-      ]
-  
+      enum: ["New", "Used", "Vintage", "Destroyed", "In Need of Restoration"],
     },
     image: {
       type: String,
+    },
+    email: {
+      type: String,
+      required: [true, "Email is required"],
+      match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
     },
   },
   {

@@ -1,5 +1,6 @@
 const express = require("express");
 const Item = require("../models/Item.model");
+const User = require("../models/User.model");
 const isUserLoggedIn = require("../middleware/isLoggedIn");
 const fileUploader = require("../config/cloudinary.config");
 const router = express.Router();
@@ -33,7 +34,6 @@ router.get("/item/create", isUserLoggedIn, (req, res, next) => {
     });
 });
 
-
 router.post(
   "/item/create",
   isUserLoggedIn,
@@ -45,6 +45,7 @@ router.post(
       price: req.body.price,
       condition: req.body.condition,
       image: req.body.image,
+      email: req.body.email,
     };
     console.log(req.body);
     Item.create(itemDetails)
@@ -57,10 +58,6 @@ router.post(
       });
   }
 );
-    
-    
-
-
 
 //Update
 
@@ -69,7 +66,7 @@ router.get("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
 
   Item.findById(itemId)
     .then((foundedItem) => {
-       res.render("item/edit-item", foundedItem)
+      res.render("item/edit-item", foundedItem);
     })
     .catch((error) => next(error));
 });
@@ -86,7 +83,7 @@ router.post("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
   )
     .then((updateItem) => {
       console.log(updateItem);
-       res.redirect("/item");
+      res.redirect("/item");
     })
     .catch((error) => next(error));
 });
@@ -103,17 +100,15 @@ router.post("/item/:itemId/delete", isUserLoggedIn, (req, res, next) => {
 module.exports = router;
 
 //item details
-router.get("/item/:itemId", (req, res, next) => {
-
+router.get("/item/:itemId", isUserLoggedIn, (req, res, next) => {
   const { itemId } = req.params;
 
   Item.findById(itemId)
-    .then(itemDetails => {
+    .then((itemDetails) => {
       res.render("item/item-details", itemDetails);
     })
-    .catch(e => {
+    .catch((e) => {
       console.log("error getting item details from DB", e);
       next(e);
     });
-
 });
