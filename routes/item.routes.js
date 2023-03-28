@@ -47,6 +47,7 @@ router.post(
       condition: req.body.condition,
       email: req.body.email,
       image: req.file.path,
+      user: req.session.currentUser._id,
     };
 
     Item.create(itemDetails)
@@ -67,7 +68,10 @@ router.get("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
 
   Item.findById(itemId)
     .then((foundedItem) => {
-      res.render("item/edit-item", foundedItem);
+      if (req.session.currentUser._id == foundedItem.user) {
+        res.render("item/edit-item", foundedItem);
+      }
+      res.redirect("/item");
     })
     .catch((error) => next(error));
 });
@@ -105,8 +109,6 @@ router.post("/item/:itemId/delete", isUserLoggedIn, (req, res, next) => {
     .catch((error) => next(error));
 });
 
-module.exports = router;
-
 //item details
 router.get("/item/:itemId", isUserLoggedIn, (req, res, next) => {
   const { itemId } = req.params;
@@ -120,3 +122,5 @@ router.get("/item/:itemId", isUserLoggedIn, (req, res, next) => {
       next(e);
     });
 });
+
+module.exports = router;

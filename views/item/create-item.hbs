@@ -3,7 +3,7 @@
    <form action="/item/create" method="post" enctype="multipart/form-data"> 
 
     <label> Title
-      <input type="text" name="title" placeholder="Your Item Title" required/>
+      <input type="text" name="title" placeholder="Your Item Title" maxlength="20" required/>
     </label>
 
 
@@ -14,9 +14,7 @@
     <label> Price
       <input type="number" name="price" placeholder="Price" min="0" required/>
     </label>
-     <label> Condition
-      <input type="text" name="condition" placeholder="Is your product new? Or is it used?" required/>
-    </label>
+     
 
     <label>Condition</label>
 
@@ -31,9 +29,14 @@
     <label>Image:
           <input type="file" name="image" required/>
         </label>
-        <label> Contact Email:
-          <input type="email", name="email", placeholder="example@email.xxx"required/>
-        </label>
+
+{{!-- <label>Filter</label>
+        <select name="filter">
+  <option value="None">None</option>
+  <option value="Clothes">Clothes</option>
+  <option value="Home">Home</option>
+  <option value="Sports">Sports</option>
+</select> --}}
 
     <button type="submit">Create</button>
 

@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-require;
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const itemSchema = new Schema(
@@ -23,12 +22,15 @@ const itemSchema = new Schema(
       enum: ["New", "Used", "Vintage", "Destroyed", "In Need of Restoration"],
     },
     image: { type: String },
-
-    email: {
-      type: String,
-      required: [true, "Email is required"],
-      match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
+    // filter: {
+    //   type: String,
+    //   required: true,
+    //   enum: [None, Clothes, Home, Sports],
+    // },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
