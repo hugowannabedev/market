@@ -68,10 +68,12 @@ router.get("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
 
   Item.findById(itemId)
     .then((foundedItem) => {
-      if (req.session.currentUser._id == foundedItem.user.toString()) {
+      if (req.session.currentUser._id === foundedItem.user.toString()) {
         res.render("item/edit-item.hbs", foundedItem);
       }
-      res.render("/item");
+      else { //befor we didn't had the else condition
+        res.render("/item");
+      }  
     })
     .catch((error) => next(error));
 });

@@ -22,18 +22,37 @@
 
 {{!  }}
 <h1 class="form-group col-md-7 ml-3">Items in our Website:</h1>
-{{#each item}}
-  <div class="card" style="max-width:10rem ">
-    <img src="{{this.image}}" class="card-img-top" alt="..." />
-    <div class="card-body">
-      <h5 class="card-title">{{this.title}}</h5>
-      <p class="card-text">Price:{{this.price}}</p>
-      <a href="/item/{{this._id}}/edit" class="btn btn-primary mb-2">Edit Item</a>
-      <form action="/item/{{_id}}/delete" method="POST">
-        <button class="btn btn-primary">Delete Item</button>
-      </form>
-      <a href="/item/{{this._id}}" class="btn btn-primary"> See Details</a>
+<div class="container">
+    <div class="row">
+
+ {{#each item}}
+
+{{!-- {{#if @index %4 === 0 }}
+<div class=“row >
+{{/if }} --}} 
+
+ <div class="card col" style="max-width:12rem">
+      <img src="{{this.image}}" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">Price:{{this.price}}</p>
+        <a href="/item/{{this._id}}/edit" class="btn btn-primary mb-2">Edit Item</a>
+        <form action="/item/{{_id}}/delete" method="POST">
+          <button class="btn btn-primary">Delete Item</button>
+        </form>
+        <a href="/item/{{this._id}}" class="btn btn-primary"> See Details</a>
+
+      </div>
+    </div>
+
+{{!-- {{#if @index %4 === 0 }}
+</div>
+{{/if }} --}}
+
+
+   
+  {{/each}}
 
     </div>
-  </div>
-{{/each}}
+ 
+</div>
