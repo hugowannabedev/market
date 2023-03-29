@@ -1,17 +1,39 @@
-<h1>Items in our Website:</h1>
+{{!-- <h1>Items in our Website:</h1>
 
 {{#each item}}
-    <section >
-        <h2>{{this.title}}</h2>
-        <p>
-            Images: <img src="{{this.image}}" alt=""> <br />
-           Price: {{this.price}} <br />
-       </p>
-<a href="/item/{{this._id}}/edit">Edit</a>
-        <form action="/item/{{_id}}/delete" method="POST">
-            <button>Delete</button>
-        </form>
-        <a href="/item/{{this._id}}"> See Details</a>
+  <section>
+    <h2>{{this.title}}</h2>
+    <p>
+      Images:
+      <img src="{{this.image}}" alt="" />
+      <br />
+      Price:
+      {{this.price}}
+      <br />
+    </p>
+    <a href="/item/{{this._id}}/edit">Edit</a>
+    <form action="/item/{{_id}}/delete" method="POST">
+      <button>Delete</button>
+    </form>
+    <a href="/item/{{this._id}}"> See Details</a>
 
-    </section>
+  </section>
+{{/each}} --}}
+
+{{!  }}
+<h1 class="form-group col-md-7 ml-3">Items in our Website:</h1>
+{{#each item}}
+  <div class="card" style="max-width:10rem ">
+    <img src="{{this.image}}" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{this.title}}</h5>
+      <p class="card-text">Price:{{this.price}}</p>
+      <a href="/item/{{this._id}}/edit" class="btn btn-primary mb-2">Edit Item</a>
+      <form action="/item/{{_id}}/delete" method="POST">
+        <button class="btn btn-primary">Delete Item</button>
+      </form>
+      <a href="/item/{{this._id}}" class="btn btn-primary"> See Details</a>
+
+    </div>
+  </div>
 {{/each}}
