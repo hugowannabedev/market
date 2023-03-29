@@ -8,6 +8,7 @@ const router = express.Router();
 // List of items
 router.get("/item", (req, res, next) => {
   Item.find()
+    .populate("user")
     .then((itemArr) => {
       const data = {
         item: itemArr,
@@ -24,7 +25,6 @@ router.get("/item", (req, res, next) => {
 // Create a new item
 
 router.get("/item/create", isUserLoggedIn, (req, res, next) => {
-  console.log(req.session.currentUser._id);
   Item.find()
     .then(() => {
       res.render("item/create-item.hbs");
@@ -68,10 +68,10 @@ router.get("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
 
   Item.findById(itemId)
     .then((foundedItem) => {
-      if (req.session.currentUser._id == foundedItem.user) {
-        res.render("item/edit-item", foundedItem);
+      if (req.session.currentUser._id == foundedItem.user.toString()) {
+        res.render("item/edit-item.hbs", foundedItem);
       }
-      res.redirect("/item");
+      res.render("/item");
     })
     .catch((error) => next(error));
 });
@@ -114,6 +114,7 @@ router.get("/item/:itemId", isUserLoggedIn, (req, res, next) => {
   const { itemId } = req.params;
 
   Item.findById(itemId)
+    .populate("user")
     .then((itemDetails) => {
       res.render("item/item-details", itemDetails);
     })

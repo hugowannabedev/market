@@ -2,7 +2,7 @@
 
 <div id="create-form">
   <form action="/item/{{this._id}}/edit" method="POST"  enctype="multipart/form-data"> 
-  <h1>id:{{this._id}} </h1>
+  
     <label> Title
       <input type="text" value = "{{this.title}}"name="title" placeholder="Your Item Title" />
     </label>
@@ -15,11 +15,17 @@
     <label> Price
       <input type="number" value ="{{this.price}}" name="price"/>
     </label>
-     <label> Condition
-      <input type="text" value = "{{this.condition}}" name="condition"/>
-    </label>
+     <label>Condition</label>
+
+<select name="condition" value="{{this.condition}}">
+  <option value="New">New</option>
+  <option value="Used">Used</option>
+  <option value="Vintage">Vintage</option>
+  <option value="Destroyed">Destroyed</option>
+  <option value="In Need of Restoration">In Need of Restoration</option>
+</select>
     <label>Image:
-          <input type="file" name="image" />
+           <input type="file" name="image" {{!--value="{{this.image}}"--}}/> 
         </label>
 
 

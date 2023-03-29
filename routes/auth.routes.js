@@ -43,8 +43,8 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
 
   //   ! This regular expression checks password for special characters and minimum length
-
-  /* const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  /*
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
     res
       .status(400)
@@ -160,5 +160,4 @@ router.post("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
-
 module.exports = router;
