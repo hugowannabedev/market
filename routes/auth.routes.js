@@ -64,7 +64,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       return User.create({ username, email, password: hashedPassword });
     })
     .then((user) => {
-      res.redirect("/auth/login");
+      res.redirect("/login");
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -88,7 +88,7 @@ router.get("/login", isLoggedOut, (req, res) => {
 // POST /auth/login
 router.post("/login", isLoggedOut, (req, res, next) => {
   const { username, email, password } = req.body;
-
+  console.log(req.body);
   // Check that username, email, and password are provided
   if (username === "" || email === "" || password === "") {
     res.status(400).render("auth/login", {

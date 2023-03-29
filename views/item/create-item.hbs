@@ -1,47 +1,51 @@
+<h2>Create your Item</h2>
+<form action="/item/create" method="post" enctype="multipart/form-data">
 
-  <h2>Create your Item</h2>
-   <form action="/item/create" method="post" enctype="multipart/form-data"> 
+  <label>
+    Title
+    <input
+      type="text"
+      name="title"
+      placeholder="Your Item Title"
+      maxlength="20"
+      required
+    />
+  </label>
 
-    <label> Title
-      <input type="text" name="title" placeholder="Your Item Title" maxlength="20" required/>
-    </label>
+  <label>
+    Description:
+    <textarea
+      type="text"
+      name="description"
+      cols="30"
+      rows="4"
+      placeholder="In few your describe your product"
+      required
+    > </textarea>
+  </label>
 
+  <label>
+    Price
+    <input type="number" name="price" placeholder="Price" min="0" required />
+  </label>
 
-    <label> Description:
-        <textarea type="text" name="description" cols="30" rows="4" placeholder="In few your describe your product" required> </textarea>
-    </label>
+  <label>Condition</label>
 
-    <label> Price
-      <input type="number" name="price" placeholder="Price" min="0" required/>
-    </label>
-     
+  <select name="condition">
+    <option value="New">New</option>
+    <option value="Used">Used</option>
+    <option value="Vintage">Vintage</option>
+    <option value="Destroyed">Destroyed</option>
+    <option value="In Need of Restoration">In Need of Restoration</option>
+  </select>
 
-    <label>Condition</label>
+  <label>Image:
+    <input type="file" name="image" required />
+  </label>
 
-<select name="condition">
-  <option value="New">New</option>
-  <option value="Used">Used</option>
-  <option value="Vintage">Vintage</option>
-  <option value="Destroyed">Destroyed</option>
-  <option value="In Need of Restoration">In Need of Restoration</option>
-</select>
+  <button type="submit">Create</button>
 
-    <label>Image:
-          <input type="file" name="image" required/>
-        </label>
-
-{{!-- <label>Filter</label>
-        <select name="filter">
-  <option value="None">None</option>
-  <option value="Clothes">Clothes</option>
-  <option value="Home">Home</option>
-  <option value="Sports">Sports</option>
-</select> --}}
-
-    <button type="submit">Create</button>
-
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</form>
