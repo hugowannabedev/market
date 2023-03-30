@@ -1,24 +1,3 @@
-
-
-{{!  }}
-{{!-- <h1 class="form-group col-md-7 ml-3">Items in our Website:</h1>
-{{#each item}}
-  <div class="card" style="max-width:15rem ">
-    <img src="{{this.image}}" class="card-img-top" alt="..." />
-    <div class="card-body">
-      <h5 class="card-title">{{this.title}}</h5>
-      <p class="card-text">Price:{{this.price}}</p>
-      <a href="/item/{{this._id}}/edit" class="btn btn-primary mb-2">Edit Item</a>
-      <form action="/item/{{_id}}/delete" method="POST">
-        <button class="btn btn-primary">Delete Item</button>
-      </form>
-      <a href="/item/{{this._id}}" class="btn btn-primary"> See Details</a>
-
-    </div>
-  </div>
-{{/each}} --}}
-
-
 <h1 class="form-group col-md-7 ml-3 text-center">Everything For The Right Price</h1>
 <div class="row row-cols-1 row-cols-md-4 g-4">
   {{#each item}}
@@ -29,12 +8,13 @@
         <h5 class="card-title">{{this.title}}</h5>
         <p class="card-text">Price:{{this.price}}</p>
         <div class="d-flex justify-content-between align-items-center">
-          <a href="/item/{{this._id}}/edit" class="btn btn-primary">Edit Item</a>
-          {{!-- <a href="/item/{{_id}}/delete" class="btn btn-primary">Delete Item</a> --}}
-          <a href="/item/{{this._id}}" class="btn btn-primary">See Details</a>
+          <a href="/item/{{this._id}}" class="btn btn-primary pr-2">See Details</a>
+          {{!-- {{#if isOwner}} --}}
+          <a href="/item/{{this._id}}/edit" class="btn btn-primary pr-2">Edit Item</a>
           <form action="/item/{{_id}}/delete" method="POST">
-              <button class="btn btn-primary">Delete Item</button>
+              <button class="btn btn-primary mt-3">Delete Item</button>
           </form>
+          {{!-- {{/if}} --}}
         </div>
       </div>
     </div>

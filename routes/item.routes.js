@@ -3,6 +3,7 @@ const Item = require("../models/Item.model");
 const User = require("../models/User.model");
 const isUserLoggedIn = require("../middleware/isLoggedIn");
 const fileUploader = require("../config/cloudinary.config");
+const isOwner = require("../middleware/isOwner");
 const router = express.Router();
 
 // List of items
@@ -63,20 +64,21 @@ router.post(
 
 //Update
 
-router.get("/item/:itemId/edit", isUserLoggedIn, (req, res, next) => {
+router.get("/item/:itemId/edit", isOwner, (req, res, next) => {
   const { itemId } = req.params;
 
   Item.findById(itemId)
     .then((foundedItem) => {
-      if (req.session.currentUser._id === foundedItem.user.toString()) {
-        res.render("item/edit-item.hbs", foundedItem);
-      }
-      else { //befor we didn't had the else condition
-        res.render("/item");
-      }  
-    })
+      // if (req.session.currentUser._id === foundedItem.user.toString()) {
+        res.render("item/edit-item.hbs", foundedItem)})
+      // }
+      // else { 
+      //   res.render("/item");
+        
+    // })
     .catch((error) => next(error));
 });
+
 
 // //UPDATE: process form
 router.post(
@@ -103,7 +105,7 @@ router.post(
 );
 
 //DELETE
-router.post("/item/:itemId/delete", isUserLoggedIn, (req, res, next) => {
+router.post("/item/:itemId/delete", isOwner, (req, res, next) => {
   const { itemId } = req.params;
 
   Item.findByIdAndDelete(itemId)
