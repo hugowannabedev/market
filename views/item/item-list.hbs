@@ -1,27 +1,7 @@
-{{!-- <h1>Items in our Website:</h1>
 
-{{#each item}}
-  <section>
-    <h2>{{this.title}}</h2>
-    <p>
-      Images:
-      <img src="{{this.image}}" alt="" />
-      <br />
-      Price:
-      {{this.price}}
-      <br />
-    </p>
-    <a href="/item/{{this._id}}/edit">Edit</a>
-    <form action="/item/{{_id}}/delete" method="POST">
-      <button>Delete</button>
-    </form>
-    <a href="/item/{{this._id}}"> See Details</a>
-
-  </section>
-{{/each}} --}}
 
 {{!  }}
-<h1 class="form-group col-md-7 ml-3">Items in our Website:</h1>
+{{!-- <h1 class="form-group col-md-7 ml-3">Items in our Website:</h1>
 {{#each item}}
   <div class="card" style="max-width:15rem ">
     <img src="{{this.image}}" class="card-img-top" alt="..." />
@@ -36,4 +16,28 @@
 
     </div>
   </div>
-{{/each}}
+{{/each}} --}}
+
+
+<h1 class="form-group col-md-7 ml-3 text-center">Everything For The Right Price</h1>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  {{#each item}}
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img src="{{this.image}}" class="card-img-top product-image p-3" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">Price:{{this.price}}</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="/item/{{this._id}}/edit" class="btn btn-primary">Edit Item</a>
+          {{!-- <a href="/item/{{_id}}/delete" class="btn btn-primary">Delete Item</a> --}}
+          <a href="/item/{{this._id}}" class="btn btn-primary">See Details</a>
+          <form action="/item/{{_id}}/delete" method="POST">
+              <button class="btn btn-primary">Delete Item</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
