@@ -1,10 +1,27 @@
-<h2>{{this.title}}</h2>
-<p>
-    Description : {{this.description}} <br>
-    Condition : {{this.condition}} <br>
-    Price : {{ this.price}} <br>
-    Images : <img src="{{this.image}}" alt=""> <br>
-    Contact Email :  {{this.user.email}}  <br>
+<style>
+    .product-image {
+      max-width: 100%;
+      height: auto;
+      width: 300px;
+      max-height: 300px;
+    }
+  </style>
 
-</p>
-<a href="/item"> Go to List of Items</a>
+<div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{{this.image}}" alt="Product Image" class="img-fluid product-image">
+      </div>
+      <div class="col-md-8">
+        <h2>{{this.title}}</h2>
+        <p><strong>Description:</strong> {{this.description}} </p>
+        <p><strong>Condition:</strong> {{this.condition}} </p>
+        <p><strong>Price:</strong> {{this.price}} </p>
+        <p><strong>User's Email:</strong> {{this.user.email}} </p>
+        <hr>
+        <a href="/item"> Go to List of Items</a>
+      </div>
+    </div>
+  </div>
+
+
