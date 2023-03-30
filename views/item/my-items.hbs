@@ -1,4 +1,4 @@
-<h1 class="form-group col-md-7 ml-3 text-center">My items</h1>
+{{!-- <h1 class="form-group col-md-7 ml-3 text-center">My items</h1>
 <div class="row row-cols-1 row-cols-md-4 g-4">
   {{#each item}}
   <div class="col mb-4">
@@ -6,21 +6,16 @@
       <img src="{{this.image}}" class="card-img-top product-image p-3" style="object-fit: contain; height: 250px;" alt="..." />
       <div class="card-body ">
         <h5 class="card-title">{{this.title}}</h5>
-        <p class="card-text">Price: {{this.price}}</p>
+        <p class="card-text">Price:{{this.price}}</p>
         <div class="d-flex justify-content-between align-items-center">
           <a href="/item/{{this._id}}" class="btn btn-primary">See Details</a>
-          {{#if isOwner}}
           <a href="/item/{{this._id}}/edit" class="btn btn-primary">Edit Item</a>
           <form action="/item/{{_id}}/delete" method="POST">
             <button class="btn btn-primary mt-3">Delete Item</button>
           </form>
-          {{/if}}
         </div>
       </div>
     </div>
   </div>
   {{/each}}
-</div>
-
-
-
+</div> --}}

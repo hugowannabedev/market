@@ -17,62 +17,41 @@
   <header>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <!-- Container wrapper -->
-      <div class="container">
-        <!-- Navbar brand -->
-        <a class="navbar-brand me-2 ml-5" href="/">
-          <img src="../images/banner-nav.png" height="30" alt="devMarket Logo" loading="lazy" style="margin-top: -1px;" />
-        </a>
 
-        <!-- Toggle button -->
-        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
-          aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </button>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="/">DevMarket</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/item">See all our items</a>
+        </li>
 
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarButtonsExample">
-          <!-- Left links -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="/item">See all our items</a>
-            </li>
-          </ul>
-          <!-- Left links -->
-          {{#if currentUser}}
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="/item/create">Add a new item</a>
-            </li>
-          </ul>
-          <div class="d-flex align-items-center">
-           <a href="/logout">
-           <button type="submit" class="btn btn-primary me-3">
-              LogOut
-            </button>
-            </a> 
-            {{else}}
-            <div class="d-flex align-items-center">
-             <a href="/login">
-              <button type="button" class="btn btn-outline-primary px-3 me-2">
-                LogIn
-              </button>
-             </a> 
-             <a href="/signup">
-             <button type="button" class="btn btn-primary me-3">
-                Sign up for free
-              </button>
-             </a> 
-            </div>
-            {{/if}}
-          </div>
-          <!-- Collapsible wrapper -->
-        </div>
-        <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
+        {{#if currentUser}}
+        <li class="nav-item">
+          <a class="nav-link" href="/item/create">Add a new item</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <a class="nav-link" href="/logout">Logout</a>
+      </form>
 
+      {{else}}
+      <li class="d-flex" role="search">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="d-flex" role="search">
+        <a class="nav-link" href="/signup">Signup</a>
+      </li>
+
+      {{/if}}
+    </div>
+  </div>
+</nav>
+  
 
 
     {{!-- --}}

@@ -128,4 +128,20 @@ router.get("/item/:itemId", isUserLoggedIn, (req, res, next) => {
     });
 });
 
+// //list of my items
+
+// router.get("/item/:userId", isUserLoggedIn, (req, res, next) => {
+//   const { userId } = req.params;
+//   User.findById(userId)
+//       .then((user) => {
+//       const data = { user };
+//       res.render("item/my-items", data);
+//     })
+//     .catch((e) => {
+//       console.log(e);
+//       next(e);
+//     });
+// });
+
+
 module.exports = router;

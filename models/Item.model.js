@@ -26,11 +26,7 @@ const itemSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    // filter: {
-    //   type: String,
-    //   required: true,
-    //   enum: [None, Clothes, Home, Sports],
-    // },
+    
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
