@@ -21,10 +21,9 @@
         <hr>
 
         
-          <a href="/item/{{item._id}}/edit">Edit</a>
-          <form action="/item/{{item._id}}" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <button>Delete</button>
+          <a href="/item/{{this._id}}/edit" class="btn btn-primary pr-2">Edit Item</a>
+          <form action="/item/{{_id}}/delete" method="POST">
+              <button class="btn btn-primary mt-3">Delete Item</button>
           </form>
        
 

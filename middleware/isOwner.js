@@ -3,20 +3,12 @@ function isOwner(req, res, next) {
   const { itemId } = req.params;
   Item.findById(itemId)
     .then((foundedItem) => {
-      if (req.session.currentUser && req.session.currentUser._id === foundedItem.user.toString()) {
-        res.locals.isOwner = true;
+      if (req.session.currentUser._id === foundedItem.user.toString()) {
         next();
-
-      } else {
-        res.locals.isOwner = false;
-        next();
-      }
+      } 
     })
     .catch((error) => {
-      res.render("error", {error});
-      /* res.render("/item"); */
+      res.render("/item");
     });
 }
-
-
 module.exports = isOwner;
